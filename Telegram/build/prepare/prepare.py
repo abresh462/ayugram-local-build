@@ -1,4 +1,4 @@
-import os, sys, pprint, re, json, pathlib, hashlib, subprocess, glob, tempfile
+﻿import os, sys, pprint, re, json, pathlib, hashlib, subprocess, glob, tempfile
 
 executePath = os.getcwd()
 sys.dont_write_bytecode = True
@@ -473,7 +473,7 @@ win:
     del msys64.exe
 
     bash -c "pacman-key --init; pacman-key --populate; pacman -Syu --noconfirm"
-    pacman -Syu --noconfirm ^
+    pacman -Syyu --noconfirm ^
         make ^
         mingw-w64-x86_64-diffutils ^
         mingw-w64-x86_64-gperf ^
@@ -1932,3 +1932,4 @@ if win:
     subprocess.run('chcp ' + currentCodePage + ' > nul', shell=True, env=modifiedEnv)
 else:
     runStages()
+
