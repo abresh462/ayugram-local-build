@@ -21,6 +21,15 @@ jobs:
         with:
           arch: x64
           toolset: 14.44
+      - name: Update MSYS2 package databases
+        shell: pwsh
+        run: |
+          $msys = "Telegram\ThirdParty\msys64\usr\bin\bash.exe"
+          if (Test-Path $msys) {
+            & $msys -lc "pacman -Syu --noconfirm"
+          } else {
+            Write-Host "MSYS2 is installed by the dependency preparation step; continuing."
+          }
       - name: Prepare build dependencies
         shell: cmd
         run: call Telegram\build\prepare\win.bat
@@ -38,3 +47,4 @@ jobs:
           name: AyuGram-Windows-Release
           path: Telegram/out/Release/
           if-no-files-found: error
+
